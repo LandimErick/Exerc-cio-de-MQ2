@@ -1,0 +1,8 @@
+# logs and aux files 
+*.log 
+*.idx
+*.nav
+*.toc 
+*.synctex.gz
+*.snm
+*.out
