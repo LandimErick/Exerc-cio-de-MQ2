@@ -1,0 +1,311 @@
+\documentclass[
+% -- opções da classe memoir --
+12pt,				% tamanho da fonte
+openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+oneside,			% para impressão em recto e verso. Oposto a twoside
+a4paper,			% tamanho do papel. 
+% -- opções da classe abntex2 --
+%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english,			% idioma adicional para hifenização
+french,				% idioma adicional para hifenização
+spanish,			% idioma adicional para hifenização
+brazil				% o último idioma é o principal do documento
+]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{ulem}
+%\usepackage{natbib}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{epsfig}
+%\usepackage{float}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{physics}
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+\chapter{Exercício 2 parte 2}
+ Seja o estado térmico 
+\begin{equation}
+	\rho = N e^{-\beta H_{AB}} \in \mathcal{H}_{AB} = \mathcal{H}_A\otimes\mathcal{H}_{B}
+\end{equation}
+e o hamiltoniano
+\begin{equation}
+	H_{AB}=J \vec{\sigma}_A\cdot\vec{\sigma}_B
+\end{equation}
+Calcule 
+\begin{equation}
+	\langle CHSH\rangle = tr(\rho CHSH)
+\end{equation}
+Onde CHSH é o operador de Bell, 
+\begin{equation}
+	CHSH = AB+A'B+AB'-A'B'
+\end{equation}
+em que $[A_i,B_j]=0$, $[A_i,A_j]=[B_i,B_j]\neq0$, $A^2=1$, $B^2=1$.
+\section{Solução: }
+\subsection{Autoestados do Hamiltoniano}
+Partindo da equação de Schrödinger, 
+\begin{equation}
+	H_{AB}\ket{\psi}_{AB}=E_n\ket{\psi}_{AB} 
+\end{equation}
+e considerando um estado genérico no espaço de Hilbert $\mathcal{H}_{AB}$
+\begin{equation}
+	\ket{\psi}_{AB}= \sum_i\sum_j C_{ij} \ket{i}\ket{j};\qquad i,j \in \{0,1\}
+\end{equation}
+Vamos, a partir da equação de Schrödinger, encontrar os autovalores e autovetores. 
+\begin{multline}
+	J(\sigma_x^A\sigma_x^B +\sigma_y^A\sigma_y^B + \sigma_z^A\sigma_z^B)(C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B)\\= E_n(C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B)
+\end{multline}
+Temos portanto,
+\begin{multline}
+	J\sigma_x^A\sigma_x^B (C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B) + \\
+	J\sigma_y^A\sigma_y^B (C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B) + \\
+    J\sigma_z^A\sigma_z^B (C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B) = \\
+    E_n(C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B)
+\end{multline}
+
+Ou seja, considerando que os estados da base $\{\ket{0},\ket{1}\}$ são autoestados de $\sigma_z$,
+\begin{multline}
+	J(C_{00} \ket{1}_A\ket{1}_B+ C_{10} \ket{0}_A\ket{1}_B +C_{01}\ket{1}_A\ket{0}_B+C_{11} \ket{0}_A\ket{0}_B) + \\
+	J(C_{00} i^2 \ket{1}_A\ket{1}_B -C_{10} i^2 \ket{0}_A\ket{1}_B -C_{01}i^2\ket{1}_A\ket{0}_B+C_{11}(-i)^2\ket{0}_A\ket{0}_B) + \\
+	J(C_{00} \ket{0}_A\ket{0}_B- C_{10} \ket{1}_A\ket{0}_B -C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B) = \\
+	E_n(C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B)
+\end{multline}
+ 	Agrupando os termos 
+ 	 	\begin{multline}
+ 		JC_{11}\ket{1}_A\ket{1}_B + (2J C_{10} -JC_{01})\ket{0}_A\ket{1}_B + (2J C_{01} -JC_{10})\ket{1}_A\ket{0}_B +  JC_{0}\ket{0}_A\ket{0}_B \\= E_n(C_{00} \ket{0}_A\ket{0}_B+ C_{10} \ket{1}_A\ket{0}_B +C_{01}\ket{0}_A\ket{1}_B+C_{11} \ket{1}_A\ket{1}_B)
+ 	\end{multline}
+ 	Ou seja, temos o seguinte sistema de equações 
+\begin{equation}
+    \begin{cases}
+		JC_{11} = E_nC_{11}\\
+		C_{10} =\frac{(J +E_n)}{2J}C_{01}\\
+		C_{01} =\frac{(J +E_n)}{2J}C_{10}\\
+		JC_{00}= E_NC_{00}\\
+	\end{cases}
+\end{equation}
+
+Ou seja, 
+\begin{equation}
+C_{10} =\frac{(J +E_n)^2}{4J^2}C_{10}	
+\end{equation}
+Ou seja,
+\begin{equation}
+C_{10} = \pm  C_{01}~e~(J +E_n)^2=4J^2  \rightarrow -3J^2 +2JE_n +E_n^2 =0
+\end{equation}
+Resolvendo a equação de segundo grau para $E_n$
+\begin{equation}
+	E_n= -J \pm 2J  \Rightarrow  E_1= -3J\quad e \quad E_2=J.
+\end{equation}
+
+Se $E_n=-3J$, temos 
+\begin{equation}
+	\begin{cases}
+	JC_{11} = -3JC_{11}\\
+	JC_{10} = -JC_{01}\\
+    JC_{01} =-JC_{10}\\
+	JC_{00}= -3JC_{00}\\
+  \end{cases}
+\end{equation}
+Ou seja, $C_{11}=C_{00}=0$ e $C_{01} =-C_{10}=\frac{1}{\sqrt{2}}$, e portanto temos o seguinte autoestado:
+\begin{equation}
+	\ket{\psi_n}_{AB}= \frac{1}{\sqrt{2}}(\ket{1}\ket{0}- \ket{0}\ket{1})   
+\end{equation}  
+
+Se $E_n=J$, temos 
+\begin{equation}
+	\begin{cases}
+	C_{11} = C_{11}\\
+	C_{10} =C_{01}\\
+	C_{01} =C_{10}\\
+	C_{00}= C_{00}\\
+  \end{cases}
+\end{equation}
+Ou seja, 
+\begin{equation}
+	\ket{\psi_n}_{AB}= C_{00}\ket{0}\ket{0} + C_{11}\ket{1}\ket{1}) + C_{10}(\ket{1}\ket{0}+\ket{0}\ket{1})   
+\end{equation}
+Quaisquer estados que respeitem esta forma são autoestados do hamiltoniano. Em particular podemos escrever $C_{10}=0$ e $C_{00}=C_{11}= 1/\sqrt{2}$, e portanto,
+\begin{equation}
+	\ket{\psi_2}_{AB}= \frac{1}{\sqrt{2}}(\ket{1}\ket{1}+ \ket{0}\ket{0})   
+\end{equation}  
+Escrevendo $C_{00}=-C_{11}= 1/\sqrt{2}$
+\begin{equation}
+	\ket{\psi_3}_{AB}= \frac{1}{\sqrt{2}}(\ket{1}\ket{1}- \ket{0}\ket{0})   
+\end{equation}  
+Escrevendo $C_{00}=C_{11}=0$, $C_{10}= 1/\sqrt{2}$
+\begin{equation}
+	\ket{\psi_4}_{AB}= \frac{1}{\sqrt{2}}(\ket{1}\ket{0}+ \ket{0}\ket{0})   
+\end{equation}  
+Como estes são os autovalores do hamiltoniano, temos que esta é uma base para o espaço de Hilbert $\mathcal{H}_{AB}$. Em particular, estes estados são precisamente os estados de Bell, compostos pelo singleto $\ket{\psi_1}$ e o tripleto $\ket{\psi_2},~\ket{\psi_3},~\ket{\psi_4}$. 
+ \subsection{Matriz densidade}
+ 
+ Voltando para a matriz densidade do estado térmico, $\rho_\beta=e^{-\beta H_{AB}}$ e lembrando que $\mathbb{I}=\sum_n\ket{\psi_n}\bra{\psi_n}$ 
+ \begin{equation}
+ 	\rho_\beta=\sum_ne^{-\beta H_{AB}}\ket{\psi_n}\bra{\psi_n}
+ \end{equation}
+ Usando que $H_{AB}\ket{\psi}_{AB}=E_n\ket{\psi}_{AB}$
+ \begin{equation}
+	\rho_\beta=\sum_ne^{-\beta E_n}\ket{\psi_n}\bra{\psi_n}.
+\end{equation}
+Como $tr \rho=1$, temos que 
+ \begin{equation}
+	\rho_\beta=\frac{\sum_ne^{-\beta E_n}\ket{\psi_n}\bra{\psi_n}}{\sum_je^{-\beta E_j}}.
+\end{equation}
+Ou seja,
+\begin{equation}
+	\rho_\beta=\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}.
+\end{equation} 
+\subsection{Cálculo da desigualdade de Bell}
+Queremos Calcular o valor esperado do operador de Bell $C=AB+A'B+AB'-A'B'$. Vamos utilizar que 
+\begin{equation}
+	\langle C \rangle =tr(\rho C)=\sum_n \bra{\psi_n}\rho C\ket{\psi_n}
+\end{equation}
+ \begin{equation}
+ 	\langle C \rangle =\sum_n \bra{\psi_n}\left(\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}\right) \ket{\psi_n}
+ \end{equation}
+ Ou seja,
+ \begin{multline}
+ 	\bra{\psi_1}\left(\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}\right) C \ket{\psi_1} +\\
+ 	\bra{\psi_2}\left(\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}\right) C \ket{\psi_2}+\\
+ 	\bra{\psi_3}\left(\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}\right) C \ket{\psi_3}+ \\
+ 	\bra{\psi_4}\left(\frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1}+e^{-\beta J}\ket{\psi_2}\bra{\psi_2}+e^{-\beta J}\ket{\psi_3}\bra{\psi_3}+e^{-\beta J}\ket{\psi_4}\bra{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}\right) C \ket{\psi_4}
+ 	\end{multline}
+Como os estados Bell são ortonormais, temos 
+\begin{equation}
+\langle C \rangle=\frac{e^{3\beta J}\bra{\psi_1}C\ket{\psi_1}+e^{-\beta J}\bra{\psi_2}C\ket{\psi_2}+e^{-\beta J}\bra{\psi_3}C\ket{\psi_3}+e^{-\beta J}\bra{\psi_4}C\ket{\psi_4}}{e^{3\beta J}+3e^{-\beta J}}
+\end{equation}
+Considerando os seguintes operadores de Bell
+\begin{equation}
+	A\ket{0}=e^{i\alpha}\ket{1}; \qquad A\ket{1}=e^{-i\alpha}\ket{0} 
+\end{equation}
+\begin{equation}
+	B\ket{0}=e^{i\gamma}\ket{1}; \qquad B\ket{1}=e^{-i\gamma}\ket{0} 
+\end{equation}
+Calculando $\bra{\psi_1}AB\ket{\psi_1}$
+\begin{equation}
+	\bra{\psi_1}AB\ket{\psi_1}= \frac{1}{2}(\bra{1}\bra{0}- \bra{0}\bra{1}) AB(\ket{1}\ket{0}- \ket{0}\ket{1})
+\end{equation}
+\begin{equation}
+=\frac{1}{2}(\bra{1}\bra{0}AB\ket{1}\ket{0} - \bra{1}\bra{0}AB\ket{0}\ket{1} -\bra{0}\bra{1}AB\ket{1}\ket{0} + \bra{0}\bra{1}AB\ket{0}\ket{1})
+\end{equation}
+\begin{equation}
+	=-\frac{1}{2}(e^{i(\alpha-\gamma)} +e^{-i(\alpha-\gamma)} )=-cos(\alpha-\gamma)
+\end{equation}
+Ou seja,
+\begin{equation}
+	\bra{\psi_1}C\ket{\psi_1}= -cos(\alpha-\gamma) -cos(\alpha'-\gamma) -cos(\alpha-\gamma') + cos(\alpha'-\gamma')
+\end{equation}
+
+Calculando $\bra{\psi_2}AB\ket{\psi_2}$
+\begin{equation}
+	\bra{\psi_2}AB\ket{\psi_2}= \frac{1}{2}(\bra{0}\bra{0}+ \bra{1}\bra{1}) AB(\ket{0}\ket{0}+ \ket{1}\ket{1})
+\end{equation}
+\begin{equation}
+	=\frac{1}{2}(\bra{0}\bra{0}AB\ket{0}\ket{0} + \bra{0}\bra{0}AB\ket{1}\ket{1} +\bra{1}\bra{1}AB\ket{0}\ket{0} + \bra{1}\bra{1}AB\ket{1}\ket{1})
+\end{equation}
+\begin{equation}
+	=\frac{1}{2}(e^{-i(\alpha+\gamma)} +e^{i(\alpha+\gamma)} )=cos(\alpha+\gamma)
+\end{equation}
+Ou seja,
+\begin{equation}
+	\bra{\psi_2}C\ket{\psi_2}= cos(\alpha+\gamma) +cos(\alpha'+\gamma) +cos(\alpha+\gamma') - cos(\alpha'+\gamma')
+\end{equation}
+
+Calculando $\bra{\psi_3}AB\ket{\psi_3}$
+\begin{equation}
+	\bra{\psi_3}AB\ket{\psi_3}= \frac{1}{2}(\bra{0}\bra{0}- \bra{1}\bra{1}) AB(\ket{0}\ket{0}- \ket{1}\ket{1})
+\end{equation}
+\begin{equation}
+	=\frac{1}{2}(\bra{0}\bra{0}AB\ket{0}\ket{0} - \bra{0}\bra{0}AB\ket{1}\ket{1} -\bra{1}\bra{1}AB\ket{0}\ket{0} + \bra{1}\bra{1}AB\ket{1}\ket{1})
+\end{equation}
+\begin{equation}
+	=-\frac{1}{2}(e^{-i(\alpha+\gamma)} +e^{i(\alpha+\gamma)} )=-cos(\alpha+\gamma)
+\end{equation}
+Ou seja,
+\begin{equation}
+	\bra{\psi_2}C\ket{\psi_2}= -cos(\alpha+\gamma) -cos(\alpha'+\gamma) -cos(\alpha+\gamma') + cos(\alpha'+\gamma')
+\end{equation}
+
+
+
+
+Calculando $\bra{\psi_4}AB\ket{\psi_4}$
+\begin{equation}
+	\bra{\psi_4}AB\ket{\psi_4}= \frac{1}{2}(\bra{1}\bra{0}+ \bra{0}\bra{1}) AB(\ket{1}\ket{0}+ \ket{0}\ket{1})
+\end{equation}
+\begin{equation}
+	=\frac{1}{2}(\bra{1}\bra{0}AB\ket{1}\ket{0} + \bra{1}\bra{0}AB\ket{0}\ket{1} +\bra{0}\bra{1}AB\ket{1}\ket{0} + \bra{0}\bra{1}AB\ket{0}\ket{1})
+\end{equation}
+\begin{equation}
+	=\frac{1}{2}(e^{i(\alpha-\gamma)} +e^{-i(\alpha-\gamma)} )=cos(\alpha-\gamma)
+\end{equation}
+Ou seja,
+\begin{equation}
+	\bra{\psi_4}C\ket{\psi_4}= cos(\alpha-\gamma) 
+	+cos(\alpha'-\gamma) +cos(\alpha-\gamma') - cos(\alpha'-\gamma')
+\end{equation}
+
+Portanto,
+\begin{multline}
+	\langle C \rangle = \frac{-e^{3\beta J}(cos(\alpha-\gamma) +cos(\alpha'-\gamma) +cos(\alpha-\gamma') - cos(\alpha'-\gamma'))}{e^{3\beta J} +3e^{-\beta J}} \\
+	+  \frac{e^{-\beta J}(cos(\alpha+\gamma) +cos(\alpha'+\gamma) +cos(\alpha+\gamma') - cos(\alpha'+\gamma'))}{e^{3\beta J} +3e^{-\beta J}} \\ + \frac{-e^{-\beta J}(cos(\alpha+\gamma) +cos(\alpha'+\gamma) +cos(\alpha+\gamma') - cos(\alpha'+\gamma'))}{e^{3\beta J} +3e^{-\beta J}} \\ + \frac{e^{-\beta J}(cos(\alpha-\gamma) +cos(\alpha'-\gamma) +cos(\alpha-\gamma') - cos(\alpha'-\gamma'))}{e^{3\beta J} +3e^{-\beta J}}
+\end{multline}
+Ou seja,
+
+\begin{equation}
+	\langle C \rangle = (cos(\alpha-\gamma) +cos(\alpha'-\gamma) +cos(\alpha-\gamma') - cos(\alpha'-\gamma'))\frac{(e^{-\beta J}-e^{3\beta J})}{e^{3\beta J} +3e^{-\beta J}}
+\end{equation}
+Considerando $\alpha=0;\alpha=\frac{\pi}{2};\gamma=-\frac{\pi}{4};\gamma=\frac{\pi}{4};$
+\begin{equation}
+	\langle C \rangle = 2\sqrt{2}\frac{(e^{-\beta J}-e^{3\beta J})}{e^{3\beta J} +3e^{-\beta J}}
+\end{equation}
+Podemos também escrever 
+\begin{equation}
+	\langle C \rangle = -2\sqrt{2}\frac{2sinh(2\beta J)}{e^{2\beta J} +3e^{-2\beta J}}
+\end{equation}
+\subsubsection{Violações da desigualdade}
+Quando $\beta\rightarrow\infty$, $\langle C \rangle \rightarrow 2\sqrt{2}$, ou seja, a desigualdade de Bell tende a violação máxima à medida que a temperatura do estado térmico tende a zero. Em contrapartida, ou seja, quando  a tende ao infinito a desigualdade tende a zero, ou seja, para $\beta\rightarrow0$, $\langle C \rangle \rightarrow0$. Portanto, o aumento de temperatura destrói o emaranhamento do estado. 
+
+ Vamos investigar a partir de qual valor da temperatura ocorre a violação, ou seja, $|\langle C\rangle| >2$
+\begin{equation}
+	 2\sqrt{2}\frac{(-e^{-\beta J}+e^{3\beta J})}{e^{3\beta J} +3e^{-\beta J}}> 2
+\end{equation} 
+Ou seja, 
+\begin{equation}
+	\sqrt{2}(-e^{-\beta J}+e^{3\beta J}) >(e^{3\beta J} +3e^{-\beta J})  
+\end{equation}
+Reescrevendo temos,
+\begin{equation}
+	e^{4\beta J}  >4\sqrt{2} +2 
+\end{equation}
+ou ainda 
+\begin{equation}
+	\beta J  >\frac{\ln(4\sqrt{2} +2)}{4} 
+\end{equation}
+
+\end{document}
+
