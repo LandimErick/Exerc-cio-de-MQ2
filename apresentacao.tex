@@ -1,0 +1,229 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, physics, mathtools}
+\usepackage{graphicx}
+\usepackage{ulem}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Exercício 2 - Parte 2}
+\subtitle{Estado Térmico e Violação da Desigualdade de Bell - Detalhamento}
+\author{}
+\date{}
+
+\begin{document}
+	
+	\frame{\titlepage}
+	
+	\begin{frame}
+		\frametitle{Problema}
+		\begin{itemize}
+			\item Estado térmico:
+			\[
+			\rho = N e^{-\beta H_{AB}} \in \mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B
+			\]
+			\item Hamiltoniano de interação:
+			\[
+			H_{AB} = J \vec{\sigma}_A \cdot \vec{\sigma}_B = J(\sigma_x^A \sigma_x^B + \sigma_y^A \sigma_y^B + \sigma_z^A \sigma_z^B)
+			\]
+			\item Operador CHSH:
+			\[
+			CHSH = AB + A'B + AB' - A'B'
+			\]
+			\item Objetivo: Calcular $\langle CHSH \rangle = \text{tr}(\rho\, CHSH)$
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Determinação dos Autoestados - Passo 1}
+		\begin{itemize}
+			\item Equação de Schrödinger:
+			\[
+			H_{AB} \ket{\psi}_{AB} = E_n \ket{\psi}_{AB}
+			\]
+			\item Estado genérico:
+			\[
+			\ket{\psi}_{AB} = C_{00}\ket{00} + C_{10}\ket{10} + C_{01}\ket{01} + C_{11}\ket{11}
+			\]
+			\item Aplicando $H_{AB}$:
+			\begin{multline*}
+				J(\sigma_x^A \sigma_x^B + \sigma_y^A \sigma_y^B + \sigma_z^A \sigma_z^B)(C_{00}\ket{00} + \cdots + C_{11}\ket{11}) \\
+				= E_n (C_{00}\ket{00} + \cdots + C_{11}\ket{11})
+			\end{multline*}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Determinação dos Autoestados - Passo 2}
+		\begin{itemize}
+			\item Ação das matrizes de Pauli:
+			\begin{align*}
+				\sigma_x \ket{0} &= \ket{1}, \quad \sigma_x \ket{1} = \ket{0} \\
+				\sigma_y \ket{0} &= i\ket{1}, \quad \sigma_y \ket{1} = -i\ket{0} \\
+				\sigma_z \ket{0} &= \ket{0}, \quad \sigma_z \ket{1} = -\ket{1}
+			\end{align*}
+			\item Termo $\sigma_x^A \sigma_x^B$:
+			\[
+			\sigma_x^A \sigma_x^B (C_{00}\ket{00} + \cdots) = C_{00}\ket{11} + C_{10}\ket{01} + C_{01}\ket{10} + C_{11}\ket{00}
+			\]
+			\item Termo $\sigma_y^A \sigma_y^B$:
+			\[
+			\sigma_y^A \sigma_y^B (C_{00}\ket{00} + \cdots) = -C_{00}\ket{11} + C_{10}\ket{01} + C_{01}\ket{10} - C_{11}\ket{00}
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Determinação dos Autoestados - Passo 3}
+		\begin{itemize}
+			\item Termo $\sigma_z^A \sigma_z^B$:
+			\[
+			\sigma_z^A \sigma_z^B (C_{00}\ket{00} + \cdots) = C_{00}\ket{00} - C_{10}\ket{10} - C_{01}\ket{01} + C_{11}\ket{11}
+			\]
+			\item Combinando todos os termos:
+			\begin{multline*}
+				J[(C_{00} - C_{00} + C_{00})\ket{00} + (C_{10} + C_{10} - C_{10})\ket{01} \\
+				+ (C_{01} + C_{01} - C_{01})\ket{10} + (C_{11} - C_{11} + C_{11})\ket{11}] = E_n (\cdots)
+			\end{multline*}
+			\item Equações acopladas:
+			\[
+			\begin{cases}
+				J C_{11} = E_n C_{11} \\
+				2J C_{10} - J C_{01} = E_n C_{10} \\
+				2J C_{01} - J C_{10} = E_n C_{01} \\
+				J C_{00} = E_n C_{00}
+			\end{cases}
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Solução das Equações}
+		\begin{itemize}
+			\item Solução não trivial quando $C_{10} = \pm C_{01}$:
+			\[
+			(J + E_n)^2 = 4J^2 \Rightarrow E_n = -3J \text{ ou } E_n = J
+			\]
+			\item Para $E_n = -3J$:
+			\[
+			\ket{\psi_1} = \frac{1}{\sqrt{2}}(\ket{10} - \ket{01}) \quad \text{(singleto)}
+			\]
+			\item Para $E_n = J$:
+			\[
+			\ket{\psi_2} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}), \quad \ket{\psi_3} = \frac{1}{\sqrt{2}}(\ket{00} - \ket{11}), \quad \ket{\psi_4} = \frac{1}{\sqrt{2}}(\ket{10} + \ket{01})
+			\]
+			\item Base completa de autoestados (estados de Bell)
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Matriz Densidade Térmica - Detalhe}
+		\begin{itemize}
+			\item Forma geral:
+			\[
+			\rho_\beta = \frac{\sum_n e^{-\beta E_n} \ket{\psi_n}\bra{\psi_n}}{\sum_j e^{-\beta E_j}}
+			\]
+			\item Substituindo os autovalores:
+			\[
+			\rho_\beta = \frac{e^{3\beta J}\ket{\psi_1}\bra{\psi_1} + e^{-\beta J}(\ket{\psi_2}\bra{\psi_2} + \ket{\psi_3}\bra{\psi_3} + \ket{\psi_4}\bra{\psi_4})}{e^{3\beta J} + 3e^{-\beta J}}
+			\]
+			\item Normalização:
+			\[
+			\text{tr}(\rho_\beta) = \frac{e^{3\beta J} + 3e^{-\beta J}}{e^{3\beta J} + 3e^{-\beta J}} = 1
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Cálculo de $\langle CHSH \rangle$ - Parte 1}
+		\begin{itemize}
+			\item Operador CHSH:
+			\[
+			CHSH = AB + A'B + AB' - A'B'
+			\]
+			\item Escolha ótima de operadores:
+			\[
+			A = \sigma_z, \quad A' = \sigma_x, \quad B = \frac{\sigma_z + \sigma_x}{\sqrt{2}}, \quad B' = \frac{\sigma_z - \sigma_x}{\sqrt{2}}
+			\]
+			\item Cálculo para $\ket{\psi_1}$:
+			\begin{align*}
+				\bra{\psi_1}AB\ket{\psi_1} &= -\cos(\alpha - \gamma) \\
+				\bra{\psi_1}A'B\ket{\psi_1} &= -\cos(\alpha' - \gamma) \\
+				&\vdots
+			\end{align*}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Cálculo de $\langle CHSH \rangle$ - Parte 2}
+		\begin{itemize}
+			\item Contribuição de $\ket{\psi_1}$:
+			\[
+			\bra{\psi_1}C\ket{\psi_1} = -\cos(\alpha-\gamma) - \cos(\alpha'-\gamma) - \cos(\alpha-\gamma') + \cos(\alpha'-\gamma')
+			\]
+			\item Contribuição de $\ket{\psi_2}$:
+			\[
+			\bra{\psi_2}C\ket{\psi_2} = \cos(\alpha+\gamma) + \cos(\alpha'+\gamma) + \cos(\alpha+\gamma') - \cos(\alpha'+\gamma')
+			\]
+			\item Contribuição de $\ket{\psi_3}$:
+			\[
+			\bra{\psi_3}C\ket{\psi_3} = -\cos(\alpha+\gamma) - \cos(\alpha'+\gamma) - \cos(\alpha+\gamma') + \cos(\alpha'+\gamma')
+			\]
+			\item Contribuição de $\ket{\psi_4}$:
+			\[
+			\bra{\psi_4}C\ket{\psi_4} = \cos(\alpha-\gamma) + \cos(\alpha'-\gamma) + \cos(\alpha-\gamma') - \cos(\alpha'-\gamma')
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resultado Final}
+		\begin{itemize}
+			\item Combinando todas as contribuições:
+			\[
+			\langle C \rangle = 2\sqrt{2} \frac{e^{-\beta J} - e^{3\beta J}}{e^{3\beta J} + 3e^{-\beta J}}
+			\]
+			\item Forma alternativa usando $\sinh$:
+			\[
+			\langle C \rangle = -2\sqrt{2} \frac{2\sinh(2\beta J)}{e^{2\beta J} + 3e^{-2\beta J}}
+			\]
+			\item Casos limites:
+			\begin{itemize}
+				\item $\beta \to \infty$ (T $\to$ 0): $\langle C \rangle \to 2\sqrt{2}$ (violação máxima)
+				\item $\beta \to 0$ (T $\to$ $\infty$): $\langle C \rangle \to 0$ (sem violação)
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Condição para Violação}
+		\begin{itemize}
+			\item Violação ocorre quando $|\langle C \rangle| > 2$:
+			\[
+			2\sqrt{2} \frac{e^{3\beta J} - e^{-\beta J}}{e^{3\beta J} + 3e^{-\beta J}} > 2
+			\]
+			\item Solução:
+			\[
+			e^{4\beta J} > 4\sqrt{2} + 3 \quad \Rightarrow \quad \beta J > \frac{\ln(4\sqrt{2} + 3)}{4} \approx 0.416
+			\]
+			\item Interpretação física: Violação só ocorre abaixo de uma temperatura crítica
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Conclusões}
+		\begin{itemize}
+			\item O estado térmico do sistema de dois spins pode violar a desigualdade de Bell
+			\item A violação é máxima no limite de temperatura zero
+			\item Existe uma temperatura crítica acima da qual a violação desaparece
+			\item O emaranhamento é sensível à temperatura, sendo destruído pelo aumento da agitação térmica
+		\end{itemize}
+	\end{frame}
+	
+\end{document}
